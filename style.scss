@@ -1,0 +1,527 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none;
+  scroll-behavior: smooth;
+}
+body {
+  counter-reset: counting;
+  background: #ffdb67;
+}
+.contain {
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  overflow-x: hidden;
+  position: relative;
+  nav {
+    .check-btn {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      display: block;
+      width: 48px;
+      height: 48px;
+      cursor: pointer;
+      z-index: 9999;
+      border-radius: 50%;
+      background: #000;
+      display: none;
+      i {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: #fff;
+        border-radius: 2px;
+        margin-left: 14px;
+        &:nth-child(1) {
+          margin-top: 16px;
+        }
+        &:nth-child(2) {
+          margin-top: 4px;
+          opacity: 1;
+        }
+        &:nth-child(3) {
+          margin-top: 4px;
+        }
+      }
+      &.active {
+        transform: rotate(45deg);
+        i {
+          transition: transform 0.2s ease;
+          &:nth-child(1) {
+            transform: translateY(6px) rotate(180deg);
+          }
+          &:nth-child(2) {
+            opacity: 0;
+          }
+          &:nth-child(3) {
+            transform: translateY(-6px) rotate(90deg);
+          }
+        }
+      }
+    }
+  }
+  aside {
+    width: 20%;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: transform .5s;
+    &.active{
+        transform: translateX(0);
+        opacity: 1;
+    }
+    .links {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-left: 10px;
+      &::before {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        content: "";
+        height: 60vh;
+        width: 3px;
+        background: transparentize($color: #000000, $amount: 0.6);
+      }
+      ul {
+        width: 100%;
+        li {
+          list-style: none;
+          margin-bottom: 20px;
+          &::before {
+            counter-increment: counting;
+            content: "0" counter(counting);
+            padding-right: 8px;
+          }
+          a {
+            color: #000;
+            font-size: 20px;
+            text-transform: uppercase;
+            font-weight: bolder;
+            &:hover {
+              text-decoration: line-through;
+            }
+          }
+        }
+      }
+    }
+  }
+  .landing {
+    width: 80%;
+    height: 100vh;
+    display: flex;
+    scroll-snap-align: start;
+    .personal {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: column;
+      padding: 50px;
+      h1 {
+        font-size: 128px;
+        font-weight: 900;
+      }
+      p {
+        font-size: 24px;
+      }
+    }
+  }
+  .about {
+    width: 80%;
+    height: 100vh;
+    padding: 50px;
+    scroll-snap-align: start;
+    h1 {
+      font-size: 64px;
+      font-weight: 900;
+      padding-bottom: 50px;
+    }
+    p {
+      font-size: 20px;
+      line-height: 30px;
+    }
+  }
+  .services {
+    width: 80%;
+    height: 100vh;
+    padding: 50px;
+    scroll-snap-align: start;
+    h1 {
+      font-size: 64px;
+      font-weight: 900;
+      padding-bottom: 50px;
+    }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .column {
+        width: 400px;
+        span {
+          opacity: 0.6;
+          color: #000;
+          font-size: 35px;
+        }
+        h1 {
+          font-size: 30px;
+          padding-bottom: 20px;
+        }
+        p {
+          line-height: 24px;
+        }
+      }
+    }
+  }
+
+  .skills {
+    width: 80%;
+    height: 100vh;
+    padding: 50px;
+    scroll-snap-align: start;
+    h1 {
+      font-size: 64px;
+      font-weight: 900;
+      padding-bottom: 50px;
+    }
+    .skill-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: center;
+      .skill {
+        width: 250px;
+        position: relative;
+        margin-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        span.name {
+          font-size: 16px;
+          text-transform: uppercase;
+          margin-bottom: 10px;
+        }
+        .percent {
+          width: 100%;
+          height: 3px;
+          background: transparentize($color: #000000, $amount: 0.7);
+          border-radius: 10px;
+          position: relative;
+          overflow: hidden;
+          .progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 70%;
+            height: 100%;
+            border-radius: 10px;
+            background: #000;
+            box-shadow: inset 0 0 2px #000;
+            animation: width 4s ease-in-out forwards;
+          }
+        }
+      }
+    }
+  }
+  @keyframes width {
+    from {
+      width: 0;
+    }
+  }
+  .experience {
+    padding: 50px;
+    width: 80%;
+    height: 100vh;
+    scroll-snap-align: start;
+    h1 {
+      font-size: 64px;
+      font-weight: 900;
+      padding-bottom: 50px;
+    }
+    .row {
+      .column {
+        width: 100%;
+        border-left: 2px solid #000;
+        padding-left: 8px;
+        &:not(:last-child) {
+          margin-bottom: 30px;
+        }
+        h1 {
+          font-size: 24px;
+          font-weight: 700;
+          padding: 10px 0;
+        }
+        p {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  .internships{
+    padding: 50px;
+    width: 80%;
+    scroll-snap-align: start;
+    height: 100vh;
+    h1{
+      font-size: 64px;
+      font-weight: 900;
+      padding-bottom: 50px;
+    }
+    .row{
+      .column {
+        width: 100%;
+        border-left: 2px solid #000;
+        padding-left: 8px;
+        &:not(:last-child) {
+          margin-bottom: 30px;
+        }
+        img{
+          width: 200px;
+        }
+        h1 {
+          font-size: 24px;
+          font-weight: 700;
+          padding: 10px 0;
+        }
+        p {
+          font-size: 16px;
+          padding-bottom: 20px;
+        }
+      }
+    }
+  }
+  .projects {
+    padding: 50px;
+    width: 80%;
+    scroll-snap-align: start;
+    height: 100vh;
+    h1 {
+      font-size: 64px;
+      font-weight: 900;
+      padding-bottom: 50px;
+    }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .column {
+        width: 280px;
+        .project-image {
+          width: 100%;
+          height: 200px;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        h1 {
+          font-size: 20px;
+          padding: 10px 0;
+        }
+        p {
+          font-size: 16px;
+          color: #000;
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+
+  .contact {
+    padding: 50px;
+    width: 80%;
+    height: 100vh;
+    scroll-snap-align: start;
+    h1 {
+      font-size: 64px;
+      font-weight: 900;
+      padding-bottom: 50px;
+    }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .column {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        &:nth-child(2) {
+          margin: 0 30px;
+        }
+        p {
+          font-size: 14px;
+          text-transform: uppercase;
+          opacity: 60%;
+          padding-bottom: 10px;
+        }
+        a,
+        address {
+          color: #000;
+          font-size: 24px;
+          line-height: 36px;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+    .contain{
+        height: 100%;
+        nav{
+            .check-btn{
+                display: unset;
+                position: fixed;
+            }
+        }
+        aside{
+            width: 100%;
+            background: #000;
+            transform: translateX(-100%);
+            .links{
+                padding-left: 40px;
+                &::before{
+                    left: 20px;
+                    background: transparentize($color: #fff, $amount: 0.7);
+                }
+                ul{
+                    li{
+                        color: #fff;
+                        a{
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+        .landing{
+            .personal{
+                h1{
+                    font-size: 80px;
+                }
+            }
+        }
+        .about, .services, .skills, .experience, .projects, .contact, .internships{
+            height: 100%;
+            width: 100%;
+            h1{
+                font-size: 30px;
+            }
+            p{
+                font-size: 18px;
+            }
+        }
+        .services{
+
+            .row{
+                flex-direction: column;
+                .column{
+                    width: 100%;
+                    margin-bottom: 30px;
+                    h1{
+                        font-size: 24px;
+                    }
+                    p{
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+        .internships{
+          .row{
+            .column{
+              h1{
+                font-size: 20px;
+              }
+            }
+          }
+        }
+        .projects{
+            .row{
+                flex-direction: column;
+                align-items: flex-start;
+                .column{
+                    width: 500px;
+                    &:nth-child(2) {
+                        margin: 50px 0;
+                      }
+                    .project-image{
+                        height: 250px;
+                    }
+                }
+            }
+        }
+        .contact{
+            .row{
+                flex-direction: column;
+                align-items: flex-start;
+                .column{
+                    width: 100%;
+                    &:nth-child(2) {
+                        margin: 30px 0;
+                      }
+                    a, address{
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .contain{
+        .landing, .about, .services, .skills, .projects, .experience, .internships, .contact{
+            padding: 30px;
+        }
+        .landing{
+            width: 100%;
+            padding-bottom: 100px;
+            .personal{
+                padding: 0;
+                h1{
+                    font-size: 50px;
+                }
+                p{
+                    font-size: 20px;
+                }
+            }
+        }
+        .skills{
+            .skill-container{
+                .skill{
+                    width: 100%;
+                }
+            }
+        }
+        .projects{
+            .row{
+                .column{
+                    width: 100%;
+                }
+            }
+        }
+        .contact{
+            .row{
+                .column{
+                    a, address{
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+}
