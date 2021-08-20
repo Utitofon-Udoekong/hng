@@ -1,3 +1,4 @@
+AOS.init();
 
 const nav = document.querySelector("aside");
 const nav_btn = document.querySelector(".check-btn");
