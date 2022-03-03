@@ -108,9 +108,10 @@ to {
     right: 0;
     top: 0;
     transition: transform .5s;
+    z-index: 20;
     &.active{
-        transform: translateX(0);
         opacity: 1;
+        transform: translateX(0) !important;
     }
     .links {
       height: 100vh;
@@ -126,7 +127,7 @@ to {
         content: "";
         height: 60vh;
         width: 3px;
-        background: transparentize($color: #000000, $amount: 0.6);
+        background: #000;
       }
       ul {
         width: 100%;
@@ -369,8 +370,6 @@ to {
           height: 220px;
           overflow: hidden;
           transition: transform .4s;
-          &:hover {
-          }
           img {
             width: 100%;
             height: 100%;
@@ -432,6 +431,11 @@ to {
 }
 
 @media screen and (max-width: 768px) {
+  .loading-screen{
+    .ring{
+      width: 70%;
+    }
+  }
     .contain{
         height: 100%;
         nav{
@@ -443,7 +447,7 @@ to {
         aside{
             width: 100%;
             background: #000;
-            transform: translateX(-100%);
+            transform: translateX(-100%) !important;
             .links{
                 padding-left: 40px;
                 &::before{

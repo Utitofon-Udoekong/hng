@@ -151,12 +151,13 @@ body {
   transition: -webkit-transform .5s;
   transition: transform .5s;
   transition: transform .5s, -webkit-transform .5s;
+  z-index: 20;
 }
 
 .contain aside.active {
-  -webkit-transform: translateX(0);
-          transform: translateX(0);
   opacity: 1;
+  -webkit-transform: translateX(0) !important;
+          transform: translateX(0) !important;
 }
 
 .contain aside .links {
@@ -182,7 +183,7 @@ body {
   content: "";
   height: 60vh;
   width: 3px;
-  background: rgba(0, 0, 0, 0.4);
+  background: #000;
 }
 
 .contain aside .links ul {
@@ -593,6 +594,9 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+  .loading-screen .ring {
+    width: 70%;
+  }
   .contain {
     height: 100%;
   }
@@ -603,8 +607,8 @@ body {
   .contain aside {
     width: 100%;
     background: #000;
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
+    -webkit-transform: translateX(-100%) !important;
+            transform: translateX(-100%) !important;
   }
   .contain aside .links {
     padding-left: 40px;
